@@ -12,17 +12,36 @@ public class EnterpriseProjectService {
         this.entityManager = entityManager;
     }
 
+    /**
+     *
+     * @return entityManager
+     */
     public EntityManager getEntityManager() {
         return entityManager;
     }
 
-    public Project newProject(String title, String description){
-        Project project = new Project(title, description);
+    /**
+     * Set a project in entityManager
+     * @param title
+     * @param description
+     * @param enterprise
+     * @return project in the entityManager
+     */
+    public Project newProject(String title, String description, Enterprise enterprise){
+        Project project = new Project(title, description, enterprise);
         entityManager.persist(project);
         entityManager.flush();
         return project;
     }
 
+    /**
+     * Set a enterprise in entityManager
+     * @param name
+     * @param description
+     * @param contactName
+     * @param contactEmail
+     * @return enterprise in the entityManager
+     */
     public Enterprise newEnterprise(String name,
                                     String description,
                                     String contactName,
@@ -38,10 +57,20 @@ public class EnterpriseProjectService {
         return enterprise;
     }
 
+    /**
+     * Find project by his Id
+     * @param anId
+     * @return project
+     */
     public Project findProjectById(Long anId) {
         return entityManager.find(Project.class, anId);
     }
 
+    /**
+     * Find enterprise by his Id
+     * @param anId
+     * @return enterprise
+     */
     public Enterprise findEnterpriseById(Long anId) {
         return entityManager.find(Enterprise.class, anId);
     }

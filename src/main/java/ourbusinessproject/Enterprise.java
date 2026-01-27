@@ -23,7 +23,7 @@ public class Enterprise {
     private String contactEmail;
 
     /**
-     *
+     * Get the name of the enterprise
      * @return name
      */
     public String getName() {
@@ -38,16 +38,24 @@ public class Enterprise {
         this.name = name;
     }
 
+    /**
+     * Get id of an enterprise
+     * @return id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * set id of an enterprise
+     * @param id
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     *
+     * Get the description of the enterprise
      * @return description
      */
     public String getDescription() {
@@ -63,7 +71,7 @@ public class Enterprise {
     }
 
     /**
-     *
+     * get the contact name of the enterprise
      * @return contactName
      */
     public String getContactName() {
@@ -79,7 +87,7 @@ public class Enterprise {
     }
 
     /**
-     *
+     * get the contact email
      * @return contactEmail
      */
     public String getContactEmail() {

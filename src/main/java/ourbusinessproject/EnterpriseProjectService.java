@@ -21,7 +21,7 @@ public class EnterpriseProjectService {
     }
 
     /**
-     * Set a project in entityManager
+     * Set a project in entityManager and adding the project to the enterprise
      * @param title
      * @param description
      * @param enterprise
@@ -29,6 +29,9 @@ public class EnterpriseProjectService {
      */
     public Project newProject(String title, String description, Enterprise enterprise){
         Project project = new Project(title, description, enterprise);
+        if (enterprise != null) {
+            enterprise.addProjects(project);
+        }
         entityManager.persist(project);
         entityManager.flush();
         return project;

@@ -5,8 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Entity
 public class Enterprise {
@@ -22,7 +22,7 @@ public class Enterprise {
     @NotBlank @Email
     private String contactEmail;
     @OneToMany(mappedBy = "enterprise")
-    private Collection<Project> projects = new ArrayList<Project>();
+    private Collection<Project> projects;
 
     /**
      * Get the name of the enterprise
@@ -117,6 +117,9 @@ public class Enterprise {
      * @param project
      */
     public void addProjects(Project project) {
+        if (this.projects == null) {
+            this.projects = new HashSet<Project>();
+        }
         projects.add(project);
     }
 }

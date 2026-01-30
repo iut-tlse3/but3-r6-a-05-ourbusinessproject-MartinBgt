@@ -1,10 +1,15 @@
 package ourbusinessproject;
 
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Bootstrap {
 
-    private InitializationService initializationService;
+    private static final Logger logger = LoggerFactory.getLogger(Bootstrap.class);
+    private final InitializationService initializationService;
 
     public Bootstrap(InitializationService initializationService) {
         this.initializationService = initializationService;
@@ -12,7 +17,12 @@ public class Bootstrap {
 
     @PostConstruct
     public void init() {
-        this.initializationService.initProjects();
+        try {
+            this.initializationService.initProjects();
+        } catch (RuntimeException re) {
+            logger.error("Error during initialisation", re);
+        }
+
     }
 
     public InitializationService getInitializationService() {

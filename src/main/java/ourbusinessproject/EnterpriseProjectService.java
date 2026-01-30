@@ -83,9 +83,10 @@ public class EnterpriseProjectService {
     /**
      * Renvoie tous les projects de la bd.
      * @return all projects
+     * On fait un join fetch pour récupérer les entreprises
      */
     public List<Project> findAllProjects() {
-        String query = "SELECT p FROM Project p ORDER BY p.title";
+        String query = "SELECT p  DISTINCT FROM Project p JOIN FETCH p.enterprise ORDER BY p.title";
         TypedQuery<Project> queryObj = entityManager.createQuery(query,Project.class);
         return queryObj.getResultList();
     }

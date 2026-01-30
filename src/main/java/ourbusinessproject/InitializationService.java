@@ -24,6 +24,7 @@ public class InitializationService {
 
     /**
      * Initialization of the initial list of projects
+     * Si l'un des ajouts de projets ou d'entreprises lance une erreur, alors il y a un rollbock et on reviens a l'état initial d'avant la méthode
      */
     @Transactional
     public void initProjects() {
